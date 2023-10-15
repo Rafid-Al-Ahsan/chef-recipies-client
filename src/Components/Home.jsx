@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import About from './About';
 
 
 const Home = () => {
@@ -54,7 +55,7 @@ const Home = () => {
                 </div>
             </div>      
 
-            
+            <About></About>
 
      
 
