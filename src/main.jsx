@@ -6,11 +6,18 @@ import {
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Components/Home';
+import MainPage from './Components/MainPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home></Home>,
+    element: <MainPage></MainPage>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>
+      }
+    ]
     
   },
 ]);

@@ -6,8 +6,7 @@ import Footer from './shared/Footer/Footer';
 const Home = () => {
     return (
         <div>
-            <Header></Header>
-            <Footer></Footer>
+           This is home page
         </div>
     );
 };
