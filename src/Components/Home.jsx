@@ -2,6 +2,7 @@
 import React from 'react';
 import About from './About';
 import Hotdish from './Hotdish/Hotdish';
+import Chefs from './Chefs/Chefs';
 
 
 const Home = () => {
@@ -56,6 +57,7 @@ const Home = () => {
                 </div>
             </div>      
 
+            <Chefs></Chefs>   
             <About></About>
             <Hotdish></Hotdish>
 
