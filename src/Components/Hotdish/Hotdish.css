@@ -1,0 +1,8 @@
+/* ItalianCuisineCards.css */
+.cuisine-card {
+    transition: transform 0.2s; /* Add a smooth transition for the hover effect */
+  }
+  
+  .cuisine-card:hover {
+    transform: scale(1.05); /* Increase the card size on hover */
+  }

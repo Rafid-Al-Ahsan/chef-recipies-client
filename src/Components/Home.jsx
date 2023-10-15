@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import About from './About';
+import Hotdish from './Hotdish/Hotdish';
 
 
 const Home = () => {
@@ -56,6 +57,7 @@ const Home = () => {
             </div>      
 
             <About></About>
+            <Hotdish></Hotdish>
 
      
 
