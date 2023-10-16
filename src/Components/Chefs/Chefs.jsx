@@ -16,7 +16,7 @@ const Chefs = () => {
     const [chefs, setChefs] = useState([]);
 
     useEffect(() => {
-         fetch('http://localhost:5000/chef')
+         fetch('http://localhost:5001/chef')
          .then(response => response.json())
          .then(data => setChefs(data))
          .catch(error => console.error(error))
