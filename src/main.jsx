@@ -7,6 +7,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Components/Home';
 import MainPage from './Components/MainPage';
+import Chefdetails from './Components/Chefdetails/Chefdetails';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
+      },
+      {
+        path: "/chefdetails/:id",
+        element: <Chefdetails></Chefdetails>,
+        loader: ({params}) => fetch(`http://localhost:5001/chef/${params.id}`)
       }
     ]
     

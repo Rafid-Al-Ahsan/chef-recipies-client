@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 
 // Awesome react components
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 
 
 
@@ -62,7 +63,7 @@ const Chefs = () => {
             <Card.Text>
             <Icon icon="mdi:thumb-up" color="#1298ee" width="50" height="40" />{chef.likes}
             </Card.Text>
-            <Button variant="primary">View Recipies</Button>
+            <Link to={`chefdetails/${chef.id}`}><Button variant="primary">View Recipies</Button></Link>
             </Card.Body>
             </Card>
         </SwiperSlide>)}
