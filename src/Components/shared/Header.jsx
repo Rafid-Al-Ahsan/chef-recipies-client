@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-
-
+import { Link } from 'react-router-dom';
+  
 const Header = () => {
     return (
         <div>
@@ -20,7 +20,7 @@ const Header = () => {
                 <Nav.Link href="#pricing">Pricing</Nav.Link>
             </Nav>
             <Navbar.Text>
-                Signed in as: <a href="#login">Mark Otto</a>
+                <Link to='/login'><Button variant="secondary">Login</Button></Link> 
             </Navbar.Text>
             </Navbar.Collapse>
         </Container>

@@ -6,21 +6,47 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import app from '../firebase/firebase.config'
+
+
+const auth = getAuth(app);
+
+const handleLogin = event =>{
+    event.preventDefault();
+    const form = event.target;
+    const email = form.emailfield.value;
+    const password = form.passwordfield.value;
+
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+
+    })
+    .catch(error => {
+        // console.error(error);
+   })
+ 
+}
+
+
 const Login = () => {
     return (
         <div>
             <Container className='w-25 mx-auto my-5'>
             <h3>Please Login</h3>
-            <Form onSubmit="">
+            <Form onSubmit={handleLogin}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" name="email" placeholder="Enter email" required/>
+                <Form.Control type="email" name="emailfield" placeholder="Enter email" required/>
 
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" name="password" placeholder="Password" required/>
+                <Form.Control type="password" name="passwordfield" placeholder="Password" required/>
             </Form.Group>
 
 
