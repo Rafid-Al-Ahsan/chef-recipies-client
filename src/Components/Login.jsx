@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../firebase/firebase.config'
 
-
 const auth = getAuth(app);
 
 const handleLogin = event =>{
@@ -30,6 +29,10 @@ const handleLogin = event =>{
    })
  
 }
+
+const authInfo = {
+    handleLogin
+ };
 
 
 const Login = () => {
@@ -69,6 +72,7 @@ const Login = () => {
             </Form.Text>
             </Form>
         </Container>
+
         </div>
     );
 };

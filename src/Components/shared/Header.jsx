@@ -1,12 +1,22 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../provider/AuthProvider';
   
 const Header = () => {
+
+    const {user, logout} = useContext(AuthContext);
+    const handleLogOut = () => {
+        logout()
+        .then()
+        .catch(error => console.log(error))
+    }
+
+
     return (
         <div>
     <Navbar className="bg-body-tertiary">
@@ -20,7 +30,11 @@ const Header = () => {
                 <Nav.Link href="#pricing">Pricing</Nav.Link>
             </Nav>
             <Navbar.Text>
+                {/* <Link to='/login'><Button variant="secondary">Login</Button></Link>  */}
+                {user ? <Button onClick={handleLogOut}  variant="secondary">Logout
+                </Button> :
                 <Link to='/login'><Button variant="secondary">Login</Button></Link> 
+                                }
             </Navbar.Text>
             </Navbar.Collapse>
         </Container>
