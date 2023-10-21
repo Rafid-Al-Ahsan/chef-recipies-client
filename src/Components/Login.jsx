@@ -4,38 +4,41 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../firebase/firebase.config'
 
+
 const auth = getAuth(app);
-
-const handleLogin = event =>{
-    event.preventDefault();
-    const form = event.target;
-    const email = form.emailfield.value;
-    const password = form.passwordfield.value;
-
-
-    signInWithEmailAndPassword(auth, email, password)
-    .then(result => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-
-    })
-    .catch(error => {
-        // console.error(error);
-   })
- 
-}
-
-const authInfo = {
-    handleLogin
- };
 
 
 const Login = () => {
+    const navigate = useNavigate();
+    const location = useLocation(); 
+    const from = location.state?.from?.pathname || '/';
+
+    const handleLogin = event =>{
+        event.preventDefault();
+        const form = event.target;
+        const email = form.emailfield.value;
+        const password = form.passwordfield.value;
+    
+    
+        signInWithEmailAndPassword(auth, email, password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            navigate(from, {replace: true})
+
+    
+        })
+        .catch(error => {
+            // console.error(error);
+       })
+     
+    }
+
     return (
         <div>
             <Container className='w-25 mx-auto my-5'>
