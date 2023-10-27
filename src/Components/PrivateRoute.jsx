@@ -10,7 +10,7 @@ const PrivateRoute = ({children}) => {
     const location = useLocation();
     if(loading){
         return (
-            <div className='h-100 w-100 flex justify-content-center align-item-center'>
+            <div className='container w-100' style={{margin:"10rem auto",}}>
                 <div className="spinner-border text-primary" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>
