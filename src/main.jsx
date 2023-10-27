@@ -12,6 +12,7 @@ import Login from './Components/Login';
 import Registration from './Components/Registration';
 import AuthProvider from './provider/AuthProvider';
 import PrivateRoute from './Components/PrivateRoute';
+import NotFound from './Components/NotFound';
 
 
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Registration></Registration>,
+      },
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
       }
     ]
     
