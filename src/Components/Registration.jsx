@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import app from '../firebase/firebase.config';
@@ -10,6 +10,10 @@ const Registration = () => {
 
     const auth = getAuth(app);
 
+    const [error , setError] = useState('');
+    const [success , setSuccess] = useState('');
+    const [isChecked, setIsChecked] = useState(false);
+
     const handleRegister = event =>{
         event.preventDefault();
         const form = event.target;
@@ -17,18 +21,33 @@ const Registration = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        if(password.length<6){
+            setError('Please add atleast 6 characters in your password');
+            return;
+        }
 
         console.log(photo,name,email,password);
         createUserWithEmailAndPassword(auth,email,password)
         .then(result => {
             const createdUser = result.user;
             console.log(createdUser);
+            setSuccess("User created successful! Please go to the login page and login");
+            event.target.reset();
+            setIsChecked(false);
         })
         .catch(error => {
-            console.log(error);
+            setError(error.message);
         })
+        
+
 
     }
+
+    const handleCheckboxChange = (e) => {
+        setIsChecked(e.target.checked);
+        
+      };
+
 
 
     return (
@@ -37,7 +56,7 @@ const Registration = () => {
         <Form onSubmit={handleRegister}>
         <Form.Group className="mb-3">
             <Form.Label>Photo URL</Form.Label>
-            <Form.Control type="text" name="photo" placeholder="Photo URL" required/>
+            <Form.Control type="text" name="photo" placeholder="Photo URL" />
 
         </Form.Group>
         <Form.Group className="mb-3">
@@ -57,7 +76,7 @@ const Registration = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check 
-                onClick=""
+                onChange={handleCheckboxChange}
                 type="checkbox" 
                 name="accept" 
                 label={<>Accept <Link to="/terms">Terms and Conditions</Link></>}
@@ -65,9 +84,21 @@ const Registration = () => {
         </Form.Group>
 
         
-        <Button variant="primary" /*disabled={!accepted}*/ type="submit" >
+        <Button variant="primary" /*disabled={!accepted}*/ type="submit" disabled={!isChecked}>
             Register
         </Button>
+
+        <br />
+
+        <Form.Text className="text-success">
+              {success}
+        </Form.Text>
+
+        <br /> 
+
+        <Form.Text className="text-danger">
+              {error}
+        </Form.Text>
 
         <br />
 
@@ -75,12 +106,7 @@ const Registration = () => {
            Already Have an Account? <Link to="/login">Login</Link>
         </Form.Text>
 
-        <Form.Text className="text-success">
-           
-        </Form.Text>
-        <Form.Text className="text-danger">
-           
-        </Form.Text>
+
         </Form>
     </Container>
     );

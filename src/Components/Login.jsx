@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { Container} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -17,6 +17,7 @@ const auth = getAuth(app);
 
 
 const Login = () => {
+    const [error, setError] = useState();
     const navigate = useNavigate();
     const location = useLocation(); 
     const from = location.state?.from?.pathname || '/';
@@ -37,7 +38,7 @@ const Login = () => {
     
         })
         .catch(error => {
-            // console.error(error);
+            setError(error.message);
        })
      
     }
@@ -93,7 +94,10 @@ const Login = () => {
             <br />
 
             <Form.Text className="text-secondary">
-               Don't have an account? <Link to="/register">Register</Link>
+               Don't have an account? <Link to="/register">Register</Link><br />
+            </Form.Text>
+            <Form.Text className="text-danger">
+                {error}
             </Form.Text>
 
             <br /><br />
@@ -101,12 +105,10 @@ const Login = () => {
             <br /><br />
             <Button onClick={googleLogin} className='btn btn-light btn-outline-warning w-100'><Icon icon="flat-color-icons:google" color="black" width="34" height="34" />  Login using Google</Button>
 
-            <Form.Text className="text-success">
+            {/* <Form.Text className="text-success">
                
-            </Form.Text>
-            <Form.Text className="text-danger">
-               
-            </Form.Text>
+            </Form.Text> */}
+
             </Form>
         </Container>
 
