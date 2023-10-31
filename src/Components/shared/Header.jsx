@@ -4,8 +4,9 @@ import { Button, Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
+import '../shared/Header.css';
   
 const Header = () => {
 
@@ -26,8 +27,8 @@ const Header = () => {
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
             <Nav className="mx-auto">
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/blog">Blog</Nav.Link>
+                <NavLink to="/">Home</NavLink>
+                <NavLink className="my-link" to="/blog">Blog</NavLink>
             </Nav>
             <div >
             {user &&     

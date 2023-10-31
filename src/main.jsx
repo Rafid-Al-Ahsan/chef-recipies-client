@@ -16,6 +16,7 @@ import NotFound from './Components/NotFound';
 import Blog from './Components/Blog';
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: <Blog></Blog>,
+        element: <Blog></Blog> ,
       },
       {
         path: "*",
