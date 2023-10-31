@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -30,6 +30,15 @@ const Registration = () => {
         createUserWithEmailAndPassword(auth,email,password)
         .then(result => {
             const createdUser = result.user;
+
+            updateProfile(createdUser, { photoURL: photo })
+                .then(() => {
+                console.log('User profile updated successfully.');
+                })
+                .catch((updateError) => {
+                console.error('Error updating user profile:', updateError);
+                });
+                
             console.log(createdUser);
             setSuccess("User created successful! Please go to the login page and login");
             event.target.reset();

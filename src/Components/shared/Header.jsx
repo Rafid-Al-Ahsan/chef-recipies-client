@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -16,6 +16,8 @@ const Header = () => {
         .catch(error => console.log(error))
     }
 
+    console.log(user);
+
 
     return (
         <div>
@@ -28,7 +30,15 @@ const Header = () => {
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/blog">Blog</Nav.Link>
             </Nav>
-            <Navbar.Text>
+            {user &&     
+                <Image
+                src={user?.photoURL}
+                alt="Profile Photo"
+                roundedCircle // Apply Bootstrap's roundedCircle class
+                fluid // Make the image responsive
+                style={{width: "3rem", height: "3rem"}}
+            />}
+            <Navbar.Text className='mx-3'>
                 {/* <Link to='/login'><Button variant="secondary">Login</Button></Link>  */}
                 {user ? <Button onClick={handleLogOut}  variant="secondary">Logout
                 </Button> :
