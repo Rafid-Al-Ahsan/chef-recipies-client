@@ -14,10 +14,9 @@ const Header = () => {
         logout()
         .then()
         .catch(error => console.log(error))
-    }
+    };
 
     console.log(user);
-
 
     return (
         <div>
@@ -30,6 +29,7 @@ const Header = () => {
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/blog">Blog</Nav.Link>
             </Nav>
+            <div >
             {user &&     
                 <Image
                 src={user?.photoURL}
@@ -37,7 +37,10 @@ const Header = () => {
                 roundedCircle // Apply Bootstrap's roundedCircle class
                 fluid // Make the image responsive
                 style={{width: "3rem", height: "3rem"}}
+                title={user?.displayName}
             />}
+
+            </div>
             <Navbar.Text className='mx-3'>
                 {/* <Link to='/login'><Button variant="secondary">Login</Button></Link>  */}
                 {user ? <Button onClick={handleLogOut}  variant="secondary">Logout

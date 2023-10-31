@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signOut, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -14,7 +15,10 @@ const Registration = () => {
     const [success , setSuccess] = useState('');
     const [isChecked, setIsChecked] = useState(false);
 
+    // const navigate = useNavigate();
+
     const handleRegister = event =>{
+        
         event.preventDefault();
         const form = event.target;
         const photo = form.photo.value;
@@ -31,7 +35,7 @@ const Registration = () => {
         .then(result => {
             const createdUser = result.user;
 
-            updateProfile(createdUser, { photoURL: photo })
+            updateProfile(createdUser, { photoURL: photo, displayName: name })
                 .then(() => {
                 console.log('User profile updated successfully.');
                 })
@@ -39,10 +43,11 @@ const Registration = () => {
                 console.error('Error updating user profile:', updateError);
                 });
                 
-            console.log(createdUser);
+            signOut(auth);
+            // console.log(createdUser);
             setSuccess("User created successful! Please go to the login page and login");
             event.target.reset();
-            setIsChecked(false);
+            handleCheckboxChange(event)
         })
         .catch(error => {
             setError(error.message);
