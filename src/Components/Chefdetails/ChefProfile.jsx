@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // Awesome react components
 import { Icon } from '@iconify/react';
@@ -14,7 +15,8 @@ const ChefProfile = ({chef, getRecipieId}) => {
     return (
         <div>
             <Card>
-                <Card.Img variant="top" src={image} />
+                {/* <Card.Img variant="top" src={image} /> */}
+                <LazyLoadImage variant="top" src={image} />
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>
                             <Card.Text>
