@@ -17,7 +17,7 @@ const Header = () => {
         .catch(error => console.log(error))
     };
 
-    console.log(user);
+    // console.log(user);
 
     return (
         <div>

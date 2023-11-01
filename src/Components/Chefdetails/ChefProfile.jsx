@@ -10,7 +10,8 @@ import { Icon } from '@iconify/react';
 
 const ChefProfile = ({chef, getRecipieId}) => {
 
-    const {id, name, years, recipies, likes, image, description, recipieDetails} = chef;   
+    const {id, name, years, recipies, likes, image, description, recipieDetails} = chef;  
+    console.log(chef); 
     
     return (
         <div>
