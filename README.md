@@ -64,4 +64,4 @@ Please follow our code of conduct while contributing.
 ## Live Web Application
 The live web application can be accessed through the following link.
 
-[Italiano Gusto]()
+[Italiano Gusto](https://rafid-al-ahsan-assignment-10.netlify.app/)
